@@ -48,19 +48,19 @@ PUT /messages
         {
             "index": 1,
             "timestamp": 1662116199,
-            "author": "blue whale",
+            "peerId": "blue whale",
             "message": "hi, what's up?"
         },
         {
             "index": 2,
             "timestamp": 1662116234,
-            "author": "green whale",
+            "peerId": "green whale",
             "message": "just chilling"
         },
         {
             "index": 3,
             "timestamp": 1662116263,
-            "author": "red whale",
+            "peerId": "red whale",
             "message": "wow!!"
         },
     ]
