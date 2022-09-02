@@ -1,0 +1,82 @@
+Create chat room
+{
+"id": 1234, // int
+"name": "Whales",
+"created": "1662116169",
+"participants": [
+"bluewhale",
+"greenwhale",
+"redwhale"
+...
+]
+}
+
+Add messages
+{
+"chatRoomId": 1234,
+"messages": [
+{
+"index": 1,
+"timestamp": 1662116199,
+"peerId": "bluewhale",
+"message": "hi, what's up?"
+},
+{
+"index": 2, 
+"timestamp": 1662116234,
+"peerId": "green whale",
+"message": "just chilling"
+},
+{
+"index": 3,
+"timestamp": 1662116263,
+"peerId": "red whale",
+"message": "wow!!"
+},
+...
+]
+}
+
+access
+1. request chat entries from a specific chat room by time range
+2. count long pauses between chat entries inside a time range (a long pause is
+any pause longer than the average time between entries in a given chat room)
+
+
+chat room
+id name created participants
+
+messages
+chatRoomId   index timestamp author message
+
+
+
+ChatRoom
+rowkey	info:name 	info:created   info:participants   meta:created		meta:message_count    meta:last_msg_timestamp
+id 		name		created        participants		   created 			count 				  timestamp
+
+
+
+Messages
+rowkey							message:message  					 meta:pause
+chatRoomId_timestamp_index		{index, timestamp, author, message}  pause = timestamp - stats:last_msg_timestamp
+
+
+1. range scan Messages, return [message:message] 
+2. get chatRoom pauses, range scan Messages, return messages where message.pause > (stats:last_msg_timestamp - info:created)/stats:count
+3. add messages retries
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
